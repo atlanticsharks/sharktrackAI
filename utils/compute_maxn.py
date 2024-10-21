@@ -77,7 +77,7 @@ def save_maxn_frames(cleaned_output: pd.DataFrame, maxn: pd.DataFrame, videos_pa
     for idx, row in maxn.iterrows():
         video_relative_path = row["video_path"]
         label = row["label"]
-        video_path = videos_path / video_relative_path if str(video_relative_path).strip() else videos_path
+        video_path = videos_path.joinpath(str(video_relative_path)) if str(video_relative_path).strip() else videos_path # changed 
         try:
             time_ms = string_to_ms(row["time"])
             frame = extract_frame_at_time(str(video_path), time_ms)
